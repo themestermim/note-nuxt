@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@layer base {
+    /* iransansxv */
+    @font-face {
+        font-family: 'iransansxv';
+        src: url('~/assets/fonts/IransansX/IRANSansXV.woff') format('woff-variations');
+        font-weight: 100 1000;
+        font-display: swap;
+    }
+
+    /* CSS Variables generated from Kigen.design */
+    :root {
+        --brown-50: oklch(0.9587638265484556 0.02123661067784989 39.38220514931896);
+        --brown-100: oklch(0.9003576274038818 0.05432923297342427 40.96670819266643);
+        --brown-200: oklch(0.810394333999951 0.1152320608402033 45.608089148580696);
+        --brown-300: oklch(0.7308208385568531 0.18198379135135662 54.528368999117234);
+        --brown-400: oklch(0.651346445636975 0.16170621105923708 54.777229337817936);
+        --brown-500: oklch(0.5722624502604585 0.14260598855547013 54.467657537279976);
+        --brown-600: oklch(0.496742306712013 0.1234583869499851 54.68656770483757);
+        --brown-700: oklch(0.4328787650968895 0.10746342989572055 54.78110057040853);
+        --brown-800: oklch(0.34261980481382937 0.08502773395969902 54.80909741616995);
+        --brown-900: oklch(0.24025407676689503 0.059470804766776277 55.02349402896028);
+        --brown-950: oklch(0.17981892923779647 0.04463018610808879 54.800452797545056);
+    }
+}
+
+@layer components {
+    .container {
+        @apply mx-auto px-4 w-full;
+    }
+    .text-ltr {
+        direction: ltr;
+    }
+    .text-rtl {
+        direction: rtl;
+    }
+}
+
+@theme {
+    --font-*: initial;
+    --font-iransansx: 'iransansxv';
+    --breakpoint-xl: unset;
+    --breakpoint-2xl: unset;
+    --color-brown-50: var(--brown-50);
+    --color-brown-100: var(--brown-100);
+    --color-brown-200: var(--brown-200);
+    --color-brown-300: var(--brown-300);
+    --color-brown-400: var(--brown-400);
+    --color-brown-500: var(--brown-500);
+    --color-brown-600: var(--brown-600);
+    --color-brown-700: var(--brown-700);
+    --color-brown-800: var(--brown-800);
+    --color-brown-900: var(--brown-900);
+    --tw-duration: 300ms;
+}
+
+
+body {
+    direction: rtl;
+    @apply bg-gray-50 font-iransansx cursor-default;
+}
