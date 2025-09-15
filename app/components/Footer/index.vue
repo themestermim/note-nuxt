@@ -13,13 +13,13 @@
         <button type="button" aria-label="drag"
             class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-gray-400 rounded-full mt-1 cursor-grab touch-none"
         ></button>
-        <div class="flex flex-nowrap gap-2 px-4 pt-3 pb-2 h-full flex-system *:transition-all">
+        <div class="container flex flex-nowrap gap-2 px-4 pt-3 pb-2 h-full flex-system *:transition-all">
             <div class="w-auto flex-1 flex flex-col gap-0 inputs-col *:transition-all">
-                <input type="text" value="تایتل لیست" id="title" name="title" class="focus:outline-none text-sm font-medium pr-2 text-gray-600 input max-h-0 overflow-hidden" />
-                <textarea name="description" id="description" class="transition-all h-11 text-base w-full font-normal placeholder:text-gray-400 border border-gray-200 rounded-lg resize-none py-1 px-2 focus:outline-none textarea" placeholder="یادداشت خود را بنویسید ..."></textarea>
+                <input type="text" v-model="note.title" id="title" name="title" class="focus:outline-none text-sm font-medium pr-2 text-gray-600 input max-h-0 overflow-hidden" />
+                <textarea name="description" v-model="note.description" id="description" class="transition-all h-11 text-base w-full font-normal placeholder:text-gray-400 border border-gray-200 rounded-lg resize-none py-1 px-2 focus:outline-none textarea" placeholder="یادداشت خود را بنویسید ..."></textarea>
             </div>
             <div class="w-20 button-col">
-                <button type="button" role="button" class="transition-all h-11 w-full rounded-lg flex items-center justify-center px-2 gap-2.5 text-sm bg-brown-500 text-white">
+                <button type="button" role="button" @click="addNote" class="transition-all h-11 w-full rounded-lg flex items-center justify-center px-2 gap-2.5 text-sm bg-brown-500 text-white">
                     <span>ارسال</span>
                 </button>
             </div>
@@ -29,10 +29,14 @@
 
 <script setup>
 import {useShared} from "~/store/shared/index.js";
+import {useNotes} from "~/store/notes/index.js";
 
 const sharedStore = useShared();
+const noteStore = useNotes();
+const noteList = computed(() => noteStore.noteList);
 const isMaximizedEditor = computed(() => sharedStore.isMaximizedEditor);
 
+const note = reactive({title: '', description: ''});
 const footerHeight = ref(64);
 const minHeight = 64;
 const maxHeight = 200;
@@ -63,4 +67,16 @@ const handleDrag = (event) => {
 const endDrag = () => {
     isDragging = false;
 }
+
+const addNote = async () => {
+    if(note.title !== '' || note.description !== '') {
+        await noteStore.addNote(note);
+        note.title = `وظیفه ${noteList.value.length + 1}`;
+        note.description = '';
+    }
+}
+
+onMounted(() => {
+    note.title = `وظیفه ${noteList.value.length + 1}`;
+})
 </script>

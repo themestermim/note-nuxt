@@ -39,6 +39,9 @@
 @theme {
     --font-*: initial;
     --font-iransansx: 'iransansxv';
+    --breakpoint-sm: 28rem;
+    --breakpoint-md: unset;
+    --breakpoint-lg: unset;
     --breakpoint-xl: unset;
     --breakpoint-2xl: unset;
     --color-brown-50: var(--brown-50);
