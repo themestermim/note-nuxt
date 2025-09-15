@@ -59,3 +59,27 @@ body {
     direction: rtl;
     @apply bg-gray-50 font-iransansx cursor-default;
 }
+
+.footer {
+    &.open {
+        .flex-system {
+            @apply flex-wrap;
+
+            .inputs-col {
+                @apply w-full gap-2;
+
+                .input {
+                    @apply max-h-12;
+                }
+
+                .textarea {
+                    @apply h-24;
+                }
+            }
+
+            .button-col {
+                @apply w-full;
+            }
+        }
+    }
+}

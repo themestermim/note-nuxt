@@ -1,7 +1,7 @@
 <template>
     <footer
         ref="footer"
-        class="border-t border-t-gray-200 transition-all bg-white fixed bottom-0 inset-x-0 transition-all"
+        :class="['border-t border-t-gray-200 transition-all bg-white fixed bottom-0 inset-x-0 transition-all footer', isMaximizedEditor && 'open']"
         :style="{height: footerHeight + 'px'}"
         @touchstart="startDrag"
         @touchmove="handleDrag"
@@ -13,21 +13,15 @@
         <button type="button" aria-label="drag"
             class="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-gray-400 rounded-full mt-1 cursor-grab touch-none"
         ></button>
-        <div class="px-4 pt-3 pb-2 h-full">
-            <div class="flex flex-wrap h-full">
-                <div class="w-auto flex-1">
-                    <input type="text" value="تایتل لیست" id="title" name="title" class="focus:outline-none text-sm font-medium pr-2 mb-1 text-gray-600" />
-                    <textarea name="description" id="description" class="transition-all h-11 text-base w-full font-normal placeholder:text-gray-400 border border-gray-200 rounded-lg resize-none py-1 px-2 focus:outline-none" placeholder="یادداشت خود را بنویسید ..."></textarea>
-                </div>
-                <div :class="{
-                    'h-fit': true,
-                    'w-20 pr-2': !isMaximizedEditor,
-                    'w-full pr-0 mt-2': isMaximizedEditor,
-                }">
-                    <button type="button" role="button" class="transition-all h-11 w-full rounded-lg flex items-center justify-center px-2 gap-2.5 text-sm bg-brown-500 text-white">
-                        <span>ارسال</span>
-                    </button>
-                </div>
+        <div class="flex flex-nowrap gap-2 px-4 pt-3 pb-2 h-full flex-system *:transition-all">
+            <div class="w-auto flex-1 flex flex-col gap-0 inputs-col *:transition-all">
+                <input type="text" value="تایتل لیست" id="title" name="title" class="focus:outline-none text-sm font-medium pr-2 text-gray-600 input max-h-0 overflow-hidden" />
+                <textarea name="description" id="description" class="transition-all h-11 text-base w-full font-normal placeholder:text-gray-400 border border-gray-200 rounded-lg resize-none py-1 px-2 focus:outline-none textarea" placeholder="یادداشت خود را بنویسید ..."></textarea>
+            </div>
+            <div class="w-20 button-col">
+                <button type="button" role="button" class="transition-all h-11 w-full rounded-lg flex items-center justify-center px-2 gap-2.5 text-sm bg-brown-500 text-white">
+                    <span>ارسال</span>
+                </button>
             </div>
         </div>
     </footer>
