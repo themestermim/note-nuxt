@@ -17,6 +17,10 @@ export const useNotes = defineStore('Notes', {
             const plainNote = { ...toRaw(note), createdAt: Date.now() }
             const id = await db.add('notes', plainNote);
             this.noteList.push({...plainNote, id});
+        },
+        async deleteNote(id) {
+            await db.delete('notes', id)
+            this.noteList = this.noteList.filter(n => n.id !== id)
         }
     },
 })
