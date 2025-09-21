@@ -11,4 +11,9 @@ export default defineNuxtConfig({
         ],
     },
     ssr: false,
+    runtimeConfig: {
+        public: {
+            apiBase: 'https://note-app-backend-theta.vercel.app',
+        }
+    }
 })

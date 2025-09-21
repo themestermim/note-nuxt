@@ -12,5 +12,29 @@
 </template>
 
 <script setup>
+import {getFetchRequest} from "~/helpers/api.js";
+import {getVersion, setVersion} from "~/helpers/shared.js";
 
+
+const getAppVersion = async () => {
+    try {
+        const localVersion = await getVersion()
+        const response = await getFetchRequest('version');
+        const remoteVersion = response.version;
+
+        if (!localVersion) {
+            await setVersion(remoteVersion)
+        } else if (localVersion.value !== remoteVersion) {
+            await setVersion(remoteVersion)
+            console.log("نسخه آپدیت شد:", remoteVersion)
+            alert("نسخه جدید اپلیکیشن موجود است!")
+        }
+    } catch (e) {
+
+    }
+}
+
+onMounted(() => {
+    getAppVersion();
+})
 </script>

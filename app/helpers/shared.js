@@ -1,3 +1,5 @@
+import {db} from "./db.js";
+
 export const formatDate = (timestamp) => {
     return new Intl.DateTimeFormat("fa-IR", {
         dateStyle: "full",
@@ -26,3 +28,12 @@ export const formatEditDate = (timestamp) => {
 
     return `${year}/${month}/${day} - ${hour}:${minute}`
 }
+
+export const getVersion = async () => {
+    return await db.get('meta', 'appVersion')
+}
+
+export const setVersion = async (version) => {
+    return await db.put('meta', { key: 'appVersion', value: version })
+}
+
