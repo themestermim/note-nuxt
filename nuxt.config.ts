@@ -24,9 +24,9 @@ export default defineNuxtConfig({
         srcDir: './public',
         filename: 'sw.js',
         manifest: {
-            name: 'Note',
-            short_name: 'Note',
-            description: 'این دفترچه رو برای تست نوشتم امیدوارم که خوشتون بیاد.',
+            name: 'Zuma App',
+            short_name: 'Zuma',
+            description: 'زوما دفترچه‌ی دیجیتالی توست؛ هر جا، هر زمان، بدون نیاز به اپلیکیشن سنگین',
             start_url: '/',
             display: 'standalone',
             lang: 'fa',

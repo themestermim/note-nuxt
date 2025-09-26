@@ -1,13 +1,13 @@
 <template>
     <div v-show="showInstallPrompt" class="fixed top-8 w-80 sm:w-96 bg-white shadow-xl border border-zinc-200 rounded-lg px-4 py-2 left-1/2 -translate-x-1/2 z-4">
-        <p class="text-sm leading-6 text-gray-900 font-medium mb-2"> وب اپلیکیشن پایه یک را به صفحه
+        <p class="text-sm leading-6 text-gray-900 font-medium mb-2"> وب اپلیکیشن زوما را به صفحه
             اصلی خود اضافه کنید. </p>
         <div class="flex items-center gap-2">
             <button @click="installApp" type="button" role="button" aria-label="نصب"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    class="text-white bg-brown-700 hover:bg-rown-800 focus:ring-4 focus:ring-brown-300 font-medium rounded-lg text-sm px-5 py-2 focus:outline-none">
                 نصب
             </button>
-            <button @click="dismissInstall" type="button" role="button" aria-label="نه" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-[13px] px-5 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"> فعلا نه </button>
+            <button @click="dismissInstall" type="button" role="button" aria-label="نه" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-[13px] px-5 py-2"> فعلا نه </button>
         </div>
     </div>
 </template>
