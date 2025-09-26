@@ -2,6 +2,13 @@ import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
+    app: {
+        head: {
+            link: [
+                { rel: 'manifest', href: '/manifest.webmanifest' },
+            ],
+        },
+    },
     devtools: {enabled: true},
     modules: ['@nuxt/eslint', '@nuxt/image', '@pinia/nuxt', '@vite-pwa/nuxt'],
     css: ['~/assets/css/main.css'],
@@ -12,7 +19,7 @@ export default defineNuxtConfig({
     },
     ssr: false,
     pwa: {
-        strategies: 'injectManifest',
+        strategies: 'generateSW',
         registerType: 'autoUpdate',
         srcDir: './public',
         filename: 'sw.js',
