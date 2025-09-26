@@ -24,8 +24,8 @@ export default defineNuxtConfig({
         srcDir: './public',
         filename: 'sw.js',
         manifest: {
-            name: 'دفترچه',
-            short_name: 'دفترچه',
+            name: 'Note',
+            short_name: 'Note',
             description: 'این دفترچه رو برای تست نوشتم امیدوارم که خوشتون بیاد.',
             start_url: '/',
             display: 'standalone',
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
                     src: "/favicon/web-app-manifest-144x144.png",
                     sizes: "144x144",
                     type: "image/png",
-                    purpose: "maskable"
+                    purpose: "any"
                 },
                 {
                     src: "/favicon/web-app-manifest-192x192.png",
