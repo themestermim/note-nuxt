@@ -38,7 +38,7 @@ export default defineNuxtConfig({
             dir: 'rtl',
             orientation: 'natural',
             background_color: '#f7f7f7',
-            theme_color: '#1d4ed8',
+            theme_color: '#b65c00',
             icons: [
                 {
                     src: "/favicon/web-app-manifest-144x144.png",
