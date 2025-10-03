@@ -4,8 +4,14 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     app: {
         head: {
+            title: 'Zuma',
             link: [
                 { rel: 'manifest', href: '/manifest.webmanifest' },
+            ],
+            meta: [
+                {name: 'description', content: 'زوما دفترچه‌ی دیجیتالی توست؛ هر جا، هر زمان، بدون نیاز به اپلیکیشن سنگین'},
+                { charset: 'utf-8' },
+                { name: 'viewport', content: 'width=device-width, initial-scale=1' }
             ],
         },
     },
