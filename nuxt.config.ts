@@ -77,7 +77,10 @@ export default defineNuxtConfig({
                 type: "image/png",
                 form_factor: "wide",
             },
-            id: "zuma"
+            id: "https://zuma-app.vercel.app/",
+            categories: ["education"],
+            prefer_related_applications: false,
+            display_override: ["fullscreen", "standalone", "minimal-ui"],
         },
 
         devOptions: {
