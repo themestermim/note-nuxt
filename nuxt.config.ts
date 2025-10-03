@@ -7,6 +7,7 @@ export default defineNuxtConfig({
             title: 'Zuma',
             link: [
                 { rel: 'manifest', href: '/manifest.webmanifest' },
+                { rel: 'icon', type: 'image/png', href: '/favicon/favicon.svg' }
             ],
             meta: [
                 {name: 'description', content: 'زوما دفترچه‌ی دیجیتالی توست؛ هر جا، هر زمان، بدون نیاز به اپلیکیشن سنگین'},
