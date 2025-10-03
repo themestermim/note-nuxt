@@ -89,14 +89,43 @@ export default defineNuxtConfig({
             display_override: ["fullscreen", "standalone", "minimal-ui"],
         },
         workbox: {
+            cleanupOutdatedCaches: true,
+            clientsClaim: true,
+            skipWaiting: true,
+            navigateFallback: '/index.html',
             runtimeCaching: [
                 {
-                    urlPattern: /^\/$/,
+                    // API بک‌اند
+                    urlPattern: /^https:\/\/note-app-backend-theta\.vercel\.app\/.*$/,
                     handler: 'NetworkFirst',
                     options: {
-                        cacheName: 'start-url'
+                        cacheName: 'api-cache',
+                        networkTimeoutSeconds: 5,
+                        expiration: {
+                            maxEntries: 50,
+                            maxAgeSeconds: 60 * 60 * 24 // ۱ روز
+                        }
+                    }
+                },
+                {
+                    // تصاویر
+                    urlPattern: ({ request }) => request.destination === 'image',
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'image-cache',
+                        expiration: {
+                            maxEntries: 50,
+                            maxAgeSeconds: 60 * 60 * 24 * 7 // یک هفته
+                        }
                     }
                 }
+                // {
+                //     urlPattern: /^\/$/,
+                //     handler: 'NetworkFirst',
+                //     options: {
+                //         cacheName: 'start-url'
+                //     }
+                // }
             ],
         },
         devOptions: {
