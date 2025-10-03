@@ -29,8 +29,9 @@ export default defineNuxtConfig({
     },
     ssr: false,
     pwa: {
-        strategies: 'generateSW',
-        registerType: 'autoUpdate',
+        strategies: 'injectManifest',
+        srcDir: '../public/',
+        filename: 'sw.js',
         manifest: {
             name: 'Zuma App',
             short_name: 'Zuma',
@@ -89,46 +90,42 @@ export default defineNuxtConfig({
             display_override: ["fullscreen", "standalone", "minimal-ui"],
         },
         workbox: {
-            cleanupOutdatedCaches: true,
-            clientsClaim: true,
-            skipWaiting: true,
-            navigateFallback: '/index.html',
+            globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
             runtimeCaching: [
                 {
-                    // کش کردن صفحه اصلی
-                    urlPattern: /^\/$/,
-                    handler: 'NetworkFirst',
+                    urlPattern: 'https://zuma-app.vercel.app/.*',
+                    handler: 'CacheFirst',
+                    method: 'GET',
                     options: {
-                        cacheName: 'html-cache',
+                        cacheName: 'cdn-cache',
                         expiration: {
-                            maxEntries: 1,
-                            maxAgeSeconds: 24 * 60 * 60 // یک روز
+                            maxEntries: 50,
+                            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 روز
+                        },
+                        cacheableResponse: {
+                            statuses: [0, 200]
                         }
                     }
                 },
                 {
-                    // کش کردن asset ها (JS, CSS, تصاویر)
-                    urlPattern: ({ request }) =>
-                        request.destination === 'script' ||
-                        request.destination === 'style' ||
-                        request.destination === 'image',
-                    handler: 'CacheFirst',
+                    urlPattern: 'https://zuma-app.vercel.app/.*',
+                    handler: 'NetworkFirst',
+                    method: 'GET',
                     options: {
-                        cacheName: 'assets-cache',
+                        cacheName: 'site-cache',
                         expiration: {
                             maxEntries: 50,
-                            maxAgeSeconds: 7 * 24 * 60 * 60 // یک هفته
+                            maxAgeSeconds: 30 * 24 * 60 * 60 // 30 روز
+                        },
+                        cacheableResponse: {
+                            statuses: [0, 200]
                         }
                     }
                 }
-                // {
-                //     urlPattern: /^\/$/,
-                //     handler: 'NetworkFirst',
-                //     options: {
-                //         cacheName: 'start-url'
-                //     }
-                // }
-            ],
+            ]
+        },
+        injectManifest: {
+            globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
         },
         devOptions: {
             enabled: true,
@@ -137,6 +134,9 @@ export default defineNuxtConfig({
     experimental: {
         payloadExtraction: true,
     },
+    plugins: [
+        {src: '~/plugins/registerServiceWorker.js', mode: "client"},
+    ],
     runtimeConfig: {
         public: {
             apiBase: 'https://note-app-backend-theta.vercel.app',
