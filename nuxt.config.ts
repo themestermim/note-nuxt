@@ -36,6 +36,7 @@ export default defineNuxtConfig({
             display: 'standalone',
             lang: 'fa',
             dir: 'rtl',
+            scope: "",
             orientation: 'natural',
             background_color: '#f7f7f7',
             theme_color: '#b65c00',
@@ -82,7 +83,17 @@ export default defineNuxtConfig({
             prefer_related_applications: false,
             display_override: ["fullscreen", "standalone", "minimal-ui"],
         },
-
+        workbox: {
+            runtimeCaching: [
+                {
+                    urlPattern: /^\/$/,
+                    handler: 'NetworkFirst',
+                    options: {
+                        cacheName: 'start-url'
+                    }
+                }
+            ],
+        },
         devOptions: {
             enabled: true,
         }
