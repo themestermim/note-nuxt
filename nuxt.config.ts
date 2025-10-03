@@ -95,27 +95,29 @@ export default defineNuxtConfig({
             navigateFallback: '/index.html',
             runtimeCaching: [
                 {
-                    // API بک‌اند
-                    urlPattern: /^https:\/\/note-app-backend-theta\.vercel\.app\/.*$/,
+                    // کش کردن صفحه اصلی
+                    urlPattern: /^\/$/,
                     handler: 'NetworkFirst',
                     options: {
-                        cacheName: 'api-cache',
-                        networkTimeoutSeconds: 5,
+                        cacheName: 'html-cache',
                         expiration: {
-                            maxEntries: 50,
-                            maxAgeSeconds: 60 * 60 * 24 // ۱ روز
+                            maxEntries: 1,
+                            maxAgeSeconds: 24 * 60 * 60 // یک روز
                         }
                     }
                 },
                 {
-                    // تصاویر
-                    urlPattern: ({ request }) => request.destination === 'image',
+                    // کش کردن asset ها (JS, CSS, تصاویر)
+                    urlPattern: ({ request }) =>
+                        request.destination === 'script' ||
+                        request.destination === 'style' ||
+                        request.destination === 'image',
                     handler: 'CacheFirst',
                     options: {
-                        cacheName: 'image-cache',
+                        cacheName: 'assets-cache',
                         expiration: {
                             maxEntries: 50,
-                            maxAgeSeconds: 60 * 60 * 24 * 7 // یک هفته
+                            maxAgeSeconds: 7 * 24 * 60 * 60 // یک هفته
                         }
                     }
                 }
