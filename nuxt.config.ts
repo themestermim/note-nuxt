@@ -36,7 +36,7 @@ export default defineNuxtConfig({
             display: 'standalone',
             lang: 'fa',
             dir: 'rtl',
-            scope: "",
+            scope: "/",
             orientation: 'natural',
             background_color: '#f7f7f7',
             theme_color: '#b65c00',
@@ -72,12 +72,14 @@ export default defineNuxtConfig({
                     purpose: "maskable"
                 },
             ],
-            screenshots: {
-                src: "/screenshot-wide.png",
-                sizes: "1920x1080",
-                type: "image/png",
-                form_factor: "wide",
-            },
+            screenshots: [
+                {
+                    src: "/screenshot-wide.png",
+                    sizes: "1920x1080",
+                    type: "image/png",
+                    form_factor: "wide",
+                }
+            ],
             id: "https://zuma-app.vercel.app/",
             categories: ["education"],
             prefer_related_applications: false,
