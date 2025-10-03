@@ -28,8 +28,6 @@ export default defineNuxtConfig({
     pwa: {
         strategies: 'generateSW',
         registerType: 'autoUpdate',
-        srcDir: './public',
-        filename: 'sw.js',
         manifest: {
             name: 'Zuma App',
             short_name: 'Zuma',
@@ -52,7 +50,19 @@ export default defineNuxtConfig({
                     src: "/favicon/web-app-manifest-192x192.png",
                     sizes: "192x192",
                     type: "image/png",
+                    purpose: "any"
+                },
+                {
+                    src: "/favicon/web-app-manifest-192x192.png",
+                    sizes: "192x192",
+                    type: "image/png",
                     purpose: "maskable"
+                },
+                {
+                    src: "/favicon/web-app-manifest-512x512.png",
+                    sizes: "512x512",
+                    type: "image/png",
+                    purpose: "any"
                 },
                 {
                     src: "/favicon/web-app-manifest-512x512.png",
@@ -61,7 +71,15 @@ export default defineNuxtConfig({
                     purpose: "maskable"
                 },
             ],
+            screenshots: {
+                src: "/screenshot-wide.png",
+                sizes: "1920x1080",
+                type: "image/png",
+                form_factor: "wide",
+            },
+            id: "zuma"
         },
+
         devOptions: {
             enabled: true,
         }
