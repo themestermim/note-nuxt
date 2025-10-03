@@ -23,6 +23,9 @@ export default defineNuxtConfig({
         plugins: [
             tailwindcss(),
         ],
+        build: {
+            chunkSizeWarningLimit: 600,
+        },
     },
     ssr: false,
     pwa: {
@@ -99,6 +102,9 @@ export default defineNuxtConfig({
         devOptions: {
             enabled: true,
         }
+    },
+    experimental: {
+        payloadExtraction: true,
     },
     runtimeConfig: {
         public: {
